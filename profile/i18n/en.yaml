@@ -1,0 +1,4 @@
+# Local overrides of Hugo Blox English strings.
+
+- id: published_with
+  translation: Published with {hugoblox}, the free, {repo_link}open source{/repo_link} website builder that empowers creators.

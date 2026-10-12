@@ -1,0 +1,32 @@
+{{- /* Per-page extras. Home page: Person structured data (keep in sync with profile/layouts/_partials/hooks/head-end/person-schema.html) */ -}}
+{{- if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://christoskalyvas.eu/#person",
+  "name": "Christos Kalyvas-Kasopatidis",
+  "alternateName": ["Christos Kalyvas", "C. Kalyvas", "Χρήστος Καλύβας-Κασοπατίδης"],
+  "givenName": "Christos",
+  "familyName": "Kalyvas-Kasopatidis",
+  "honorificSuffix": "PhD",
+  "jobTitle": "AI Security Architect",
+  "description": "AI security architect working on the security of AI and LLM systems, AI for cyber defence and vulnerability intelligence. PhD in Intelligent Big Data Management.",
+  "url": "https://christoskalyvas.eu/",
+  "image": "https://christoskalyvas.eu/images/christos-kalyvas-kasopatidis.jpg",
+  "email": "mailto:christos@christoskalyvas.eu",
+  "nationality": {"@type": "Country", "name": "Greece"},
+  "alumniOf": {"@type": "CollegeOrUniversity", "name": "University of the Aegean", "url": "https://www.aegean.gr"},
+  "knowsAbout": ["AI security", "LLM security", "Prompt injection", "Agentic AI", "Vulnerability intelligence", "Threat intelligence", "Machine learning", "Skyline queries", "Multi-objective optimisation"],
+  "sameAs": [
+    "https://www.linkedin.com/in/christoskalyvas",
+    "https://orcid.org/0000-0003-0901-3580",
+    "https://www.wikidata.org/wiki/Q141695486",
+    "https://scholar.google.com/citations?user=YKAgHFsAAAAJ",
+    "https://github.com/chkalyvas",
+    "https://infosec.exchange/@chkalyvas",
+    "https://x.com/kalyvaschristos"
+  ]
+}
+</script>
+{{- end }}

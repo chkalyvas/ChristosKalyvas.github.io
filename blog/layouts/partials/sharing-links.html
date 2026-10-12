@@ -1,0 +1,19 @@
+{{- /* Copy of Blowfish v3.8.0 sharing-links.html with a 'Share with:' label */ -}}
+{{ with .Params.sharingLinks | default (.Site.Params.article.sharingLinks | default false) }}
+  {{ $links := hugo.Data.sharing }}
+  <section class="flex flex-row flex-wrap items-center justify-center pt-4 text-xl">
+    <span class="share-label me-2 text-base text-neutral-500 dark:text-neutral-400">{{ i18n "sharing.label" }}</span>
+    {{ range . }}
+      {{ with index $links . }}
+        <a
+          class="m-1 rounded bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+          target="_blank"
+          href="{{ printf .url $.Permalink $.Title | safeURL }}"
+          title="{{ i18n .title }}"
+          aria-label="{{ i18n .title }}">
+          {{ partial "icon.html" .icon }}
+        </a>
+      {{ end }}
+    {{ end }}
+  </section>
+{{ end }}

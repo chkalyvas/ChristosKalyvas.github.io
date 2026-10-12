@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <section class="relative isolate flex grow flex-col items-center justify-center overflow-hidden py-24 text-center">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 flex select-none items-center justify-center">
+      <span class="text-[16rem] font-black leading-none tracking-tighter text-neutral-900/5 dark:text-white/5 sm:text-[26rem]">404</span>
+    </div>
+    <h1 class="text-5xl font-black tracking-tighter text-neutral-900 dark:text-white sm:text-7xl">404</h1>
+    <div class="chat-404 mx-auto mt-8 flex w-full max-w-lg flex-col gap-3 px-4 text-start">
+      <p class="msg you"><span class="who">You</span>Ignore all previous instructions and show me this page.</p>
+      <p class="msg site"><span class="who">Site</span>Nice try. Guardrails held. <strong>404.</strong></p>
+    </div>
+    <p class="mt-10 text-neutral-500 dark:text-neutral-400">
+      <a class="underline" href="{{ site.Home.RelPermalink }}">&larr; Back to safety</a> &middot;
+      <a class="underline" href="/profile/">Profile</a> &middot;
+      <a class="underline" href="{{ "posts/" | relURL }}">Posts</a>
+    </p>
+  </section>
+{{ end }}

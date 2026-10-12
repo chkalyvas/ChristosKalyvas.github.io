@@ -1,0 +1,35 @@
+# Convert publications.bib (repo root) into Hugo Blox publication pages and open a PR.
+name: Import publications from BibTeX
+
+permissions:
+  contents: write
+  pull-requests: write
+
+on:
+  push:
+    branches: [main]
+    paths: [publications.bib]
+  workflow_dispatch:
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install converter
+        run: pip install academic==0.10.0
+      - name: Convert BibTeX to Markdown
+        if: ${{ hashFiles('publications.bib') != '' }}
+        run: academic import publications.bib profile/content/publication/ --compact
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: 'content: import publications from BibTeX'
+          title: Import latest publications
+          body: Import publications from `publications.bib` into `profile/content/publication/`.
+          base: main
+          branch: import-publications
+          delete-branch: true

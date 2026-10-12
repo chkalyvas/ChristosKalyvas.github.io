@@ -1,0 +1,6 @@
+{{- /* Site-wide extras (cached once per site) */ -}}
+<link rel="icon" type="image/png" sizes="192x192" href="{{ "android-chrome-192x192.png" | absURL }}">
+<script defer src="{{ "js/console-hello.js" | absURL }}"></script>
+{{- if hugo.IsProduction }}
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ec65a01e4c6549a895cb7523bc27837b"}'></script><!-- End Cloudflare Web Analytics -->
+{{- end }}

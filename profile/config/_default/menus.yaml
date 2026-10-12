@@ -1,0 +1,17 @@
+# Navigation Links
+#   The weight parameter defines the order that the links will appear in.
+#   "../" points back to the blog at the site root (this site is served under /profile/).
+
+main:
+  - name: Bio
+    url: /
+    weight: 10
+  - name: Experience
+    url: experience/
+    weight: 11
+  - name: Papers
+    url: /#papers
+    weight: 12
+  - name: Blog
+    url: ../
+    weight: 13

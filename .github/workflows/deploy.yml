@@ -1,0 +1,121 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  HUGO_VERSION: '0.164.0'
+  NODE_VERSION: '22'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with PaperMod submodule)
+        uses: actions/checkout@v5
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: profile/package-lock.json
+
+      - name: Install Tailwind (profile site)
+        working-directory: profile
+        run: npm ci --no-audit --no-fund
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      # Pages reports http:// until HTTPS is enforced; always build with https://
+      - name: Resolve base URL
+        run: |
+          BASE="${{ steps.pages.outputs.base_url }}"
+          echo "BASE_URL=${BASE/#http:/https:}" >> "$GITHUB_ENV"
+
+      - name: Build blog (PaperMod) -> /
+        env:
+          HUGO_ENVIRONMENT: production
+        run: |
+          hugo --gc --minify \
+            --source blog \
+            --baseURL "$BASE_URL/" \
+            --destination "$GITHUB_WORKSPACE/public"
+
+      - name: Build profile (Hugo Blox Academic CV) -> /profile/
+        env:
+          HUGO_ENVIRONMENT: production
+        run: |
+          hugo --gc --minify \
+            --source profile \
+            --baseURL "$BASE_URL/profile/" \
+            --destination "$GITHUB_WORKSPACE/public/profile"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # Tell Bing and other IndexNow search engines which pages exist (key file: blog/static/<key>.txt)
+      - name: Notify search engines (IndexNow)
+        continue-on-error: true
+        env:
+          INDEXNOW_KEY: '019b6a29f446c9cca180a98eb03c23d9'
+        run: |
+          sleep 90
+          python3 - <<'PY'
+          import json, os, re, urllib.request
+          key = os.environ["INDEXNOW_KEY"]
+          host = "christoskalyvas.eu"
+          UA = "christoskalyvas.eu-indexnow/1.0 (+https://christoskalyvas.eu)"  # Cloudflare blocks the default Python user agent
+          urls = []
+          for sm in ("https://christoskalyvas.eu/sitemap.xml", "https://christoskalyvas.eu/profile/sitemap.xml"):
+              xml = urllib.request.urlopen(urllib.request.Request(sm, headers={"User-Agent": UA}), timeout=30).read().decode()
+              urls += re.findall(r"<loc>([^<]+)</loc>", xml)
+          body = json.dumps({"host": host, "key": key, "keyLocation": f"https://{host}/{key}.txt", "urlList": urls[:10000]}).encode()
+          import time
+          for attempt in range(4):
+              try:
+                  req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8", "User-Agent": UA})
+                  print(len(urls), "URLs submitted, HTTP", urllib.request.urlopen(req, timeout=30).status)
+                  break
+              except Exception as e:
+                  print("attempt", attempt + 1, "failed:", e)
+                  time.sleep(60)
+          PY

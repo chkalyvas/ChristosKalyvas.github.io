@@ -1,0 +1,30 @@
+{{- /* llms.txt (https://llmstxt.org): a plain-text guide to this site for AI assistants */ -}}
+# {{ site.Title }}
+
+> Christos Kalyvas-Kasopatidis, PhD, is an AI security architect working on the security of AI and LLM systems (AI security controls and governance, shadow-AI detection, prompt-injection testing and guardrail evaluation, agentic AI threat modelling), AI for cyber defence and vulnerability intelligence. His research background is in machine learning and multi-objective (skyline / Pareto) optimisation over big data (PhD, University of the Aegean).
+
+This site has two parts: a blog at the root and an academic profile under /profile/.
+
+## Profile
+
+- [Profile and bio]({{ "profile/" | absURL }}): biography, research interests, education
+- [Experience]({{ "profile/experience/" | absURL }}): positions, skills, certifications
+- [Publications]({{ "profile/publication/" | absURL }}): journal articles, conference papers and preprints with DOIs
+- [ORCID](https://orcid.org/0000-0003-0901-3580)
+- [Google Scholar](https://scholar.google.com/citations?user=YKAgHFsAAAAJ)
+
+## Sections
+
+- [Vulnerability Intelligence]({{ "vulnerability-intelligence/" | absURL }}): discovery, cataloguing, prioritisation and exploitation of vulnerabilities
+- [Off Watch]({{ "off-watch/" | absURL }}): non-research writing, including [Nautical]({{ "off-watch/nautical/" | absURL }}) (sailing, navigation, seamanship)
+
+## Blog posts
+{{ range site.RegularPages.ByDate.Reverse }}{{ if not (in (slice "search" "archives" "security") .File.ContentBaseName) }}
+- [{{ .Title }}]({{ .Permalink }}){{ with .Summary }}: {{ . | plainify | truncate 160 }}{{ end }}
+{{ end }}{{- end }}
+
+## Contact
+
+- Email: christos@christoskalyvas.eu
+- [LinkedIn](https://www.linkedin.com/in/christoskalyvas)
+- [GitHub](https://github.com/chkalyvas)

@@ -1,0 +1,147 @@
+# Blog site (Blowfish). Served at the site root.
+# baseURL is overridden at build time by the GitHub Actions workflow.
+baseURL: "https://christoskalyvas.eu/"
+title: Christos Kalyvas-Kasopatidis
+theme: blowfish
+defaultContentLanguage: en
+
+enableRobotsTXT: true
+enableEmoji: true
+# Show tags and titles exactly as written (no automatic Title Case)
+titleCaseStyle: none
+buildDrafts: false
+buildFuture: false
+summaryLength: 0
+pagination:
+  pagerSize: 10
+
+outputFormats:
+  llms:
+    mediaType: text/plain
+    baseName: llms
+    isPlainText: true
+    notAlternative: true
+
+outputs:
+  home: [HTML, RSS, JSON, llms] # JSON powers the search; llms -> /llms.txt
+
+taxonomies:
+  tag: tags
+  category: categories
+  series: series
+
+languages:
+  en:
+    locale: en
+    title: Christos Kalyvas-Kasopatidis
+    params:
+      dateFormat: "2 January 2006"
+      copyright: "© { year } Christos Kalyvas-Kasopatidis · Views are my own and do not represent any employer or client"
+
+params:
+  # Home page <title> and share title (see layouts/partials/head.html)
+  homeTitle: "Christos Kalyvas-Kasopatidis, PhD · AI Security Architect"
+  description: >-
+    Blog by Christos Kalyvas-Kasopatidis, PhD, AI security architect: essays
+    on LLM security, agentic AI, AI for cyber defence, vulnerability
+    intelligence and the ethics of AI.
+  keywords: [AI security, LLM security, agentic AI, vulnerability intelligence, cybersecurity, AI ethics, philosophy of mind, cognitive psychology]
+  # Allow Google to show large image thumbnails and full snippets in results
+  robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  # Sections whose posts appear on the home page
+  mainSections: [posts, vulnerability-intelligence]
+
+  colorScheme: slate
+  defaultAppearance: dark
+  autoSwitchAppearance: true
+  enableSearch: true
+  enableCodeCopy: true
+
+  header:
+    layout: fixed-fill-blur
+  footer:
+    showMenu: false
+    showCopyright: true
+    showThemeAttribution: true
+    showAppearanceSwitcher: true
+    showScrollToTop: true
+
+  homepage:
+    layout: profile
+    showRecent: true
+    showRecentItems: 5
+    showMoreLink: true
+    showMoreLinkDest: /posts/
+    cardView: false
+
+  article:
+    showDate: true
+    showAuthor: true
+    showReadingTime: true
+    showWordCount: false
+    showTableOfContents: false
+    showTaxonomies: true
+    showTags: true
+    showCategories: false
+    showBreadcrumbs: false
+    showPagination: true
+    showHeadingAnchors: true
+    showHero: false
+    # Share buttons, in this order (see data/sharing.json for Hacker News)
+    sharingLinks: [email, linkedin, mastodon, twitter, hackernews, reddit]
+
+  list:
+    showBreadcrumbs: false
+    showSummary: true
+    groupByYear: true
+    cardView: false
+
+  taxonomy:
+    showTermCount: true
+
+  author:
+    name: Christos Kalyvas-Kasopatidis
+    image: img/author.jpg
+    headline: "AI Security Architect · PhD"
+    bio: "AI security architect with a PhD in machine learning and big data, working on the security of AI and LLM systems, AI for cyber defence and vulnerability intelligence."
+    links:
+      - email: "mailto:christos@christoskalyvas.eu"
+      - linkedin: "https://www.linkedin.com/in/christoskalyvas"
+      - google-scholar: "https://scholar.google.com/citations?user=YKAgHFsAAAAJ"
+      - orcid: "https://orcid.org/0000-0003-0901-3580"
+      - github: "https://github.com/chkalyvas"
+      - mastodon: "https://infosec.exchange/@chkalyvas"
+      - x-twitter: "https://x.com/kalyvaschristos"
+      - rss: "/index.xml"
+
+menus:
+  main:
+    - name: Posts
+      pageRef: /posts
+      weight: 10
+    - name: Vulnerability Intelligence
+      pageRef: /vulnerability-intelligence
+      weight: 12
+    - name: Off Watch
+      pageRef: /off-watch
+      weight: 14
+    - name: Tags
+      pageRef: /tags
+      weight: 30
+    - name: Profile
+      url: /profile/
+      weight: 50
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    parser:
+      wrapStandAloneImageWithinParagraph: false
+      attribute:
+        block: true
+  highlight:
+    noClasses: false
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4

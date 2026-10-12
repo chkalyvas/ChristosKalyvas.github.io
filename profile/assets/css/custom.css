@@ -1,0 +1,187 @@
+/* assets/css/custom.css */
+.avatar-status {
+  background-color: #fff;   /* white circle behind the emoji */
+  color: inherit;           /* let the emoji use its default color */
+}
+
+/* Self-hosted fonts (SIL Open Font License 1.1, see /fonts/). Generated from Google Fonts. */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url(/fonts/dm-sans-italic-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url(/fonts/dm-sans-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url(/fonts/dm-sans-normal-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url(/fonts/dm-sans-normal-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(/fonts/source-serif-4-italic-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(/fonts/source-serif-4-italic-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(/fonts/source-serif-4-normal-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(/fonts/source-serif-4-normal-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --font-ui: "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-reading: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+/* Profile: sans for interface and headings, serif for reading text (About me, My Research, summaries).
+   Font files are served from the site root (/fonts/), which the blog publishes. */
+body { font-family: var(--font-ui) !important; }
+.prose { font-family: var(--font-reading); }
+.prose :is(h1, h2, h3, h4, h5, h6) { font-family: var(--font-ui); }
+.prose :is(code, pre, kbd) { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+/* Layout: wider reading boxes on desktop (theme caps text at ~65 characters) */
+@media (min-width: 768px) {
+  .blox-resume-biography-3 .max-w-prose { max-width: 52rem; }
+  .blox-resume-biography-3 .bio-text,
+  .blox-resume-biography-3 .prose { max-width: none; }
+  .blox-markdown .max-w-prose { max-width: 58rem; }
+  .blox-markdown .prose { max-width: none; }
+  .blox-resume-skills .max-w-prose { max-width: 68rem; }
+  .blox-resume-awards .max-w-prose,
+  .blox-resume-languages .max-w-prose { max-width: 52rem; }
+}
+
+/* Justified paragraphs (not on phones, where narrow justified lines leave gaps) */
+@media (min-width: 640px) {
+  .prose p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+  }
+}
+
+/* Biography block: hanging indent for Interests, spacing between Education entries */
+.resume-biography ul.list-disc.list-inside {
+  list-style-position: outside;
+  padding-left: 1.25rem;
+}
+.resume-biography ul.list-disc.list-inside li { padding-left: 0.25rem; }
+.resume-biography li.flex.items-start + li.flex.items-start { margin-top: 0.85rem; }
+
+/* Text sections (My Research, Focus Areas, Research Projects, Talks, Frameworks): same sans font as Experience */
+.blox-markdown div.prose {
+  font-family: var(--font-ui);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.blox-markdown div.prose :is(p, li, td, th) { font-size: 1em; }
+
+/* Skills: easier to read */
+.blox-resume-skills .skills-name {
+  display: block;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.blox-resume-skills .skills-description {
+  margin-top: 0.2rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+  opacity: 0.85;
+}
+.blox-resume-skills .skills-content {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin-bottom: 1.1rem;
+}
+.blox-resume-skills .skills-icon { margin-top: 0.2rem; flex-shrink: 0; }
+@media (min-width: 1024px) {
+  .blox-resume-skills .lg\:flex-row { align-items: flex-start; gap: 2.5rem; }
+}
+.blox-resume-skills .text-xl.font-bold {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+/* Owl status badge: show it is hoverable */
+.avatar-emoji[title] { cursor: help; }
+
+/* Mobile: publication cards fit the screen (theme stacks two paddings and a non-shrinking grid column) */
+@media (max-width: 767px) {
+  .blox-collection .container.px-8 { padding-left: 0; padding-right: 0; }
+  .blox-collection .grid { grid-template-columns: minmax(0, 1fr); }
+  .blox-collection h2, .blox-collection a { overflow-wrap: anywhere; }
+}
+
+/* Tablet: let the widened bio column shrink next to the photo */
+@media (min-width: 768px) {
+  .blox-resume-biography-3 .flex-auto.max-w-prose { min-width: 0; flex: 1 1 0%; }
+  .blox-resume-biography-3 .resume-biography { max-width: 100%; }
+}
+@media (max-width: 1023px) {
+  .resume-biography .grid.md\:grid-cols-2 { grid-template-columns: minmax(0, 1fr); }
+}
+.resume-biography li.flex .description { min-width: 0; overflow-wrap: anywhere; }
+
+/* Owl badge: white circle in light and dark mode (theme uses black in dark mode) */
+.avatar-emoji,
+.dark .avatar-emoji {
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 35%);
+}
+
+/* Mobile: side padding for containers that have none (e.g. the publications list) and for the footer */
+@media (max-width: 767px) {
+  .container:not([class*="px-"]) { padding-left: 1rem; padding-right: 1rem; }
+  footer .powered-by { padding-left: 1rem; padding-right: 1rem; }
+}
+/* Publication pages: let the tag row wrap on narrow screens */
+.max-w-prose.print\:hidden > .flex.justify-center { flex-wrap: wrap; row-gap: 0.5rem; }

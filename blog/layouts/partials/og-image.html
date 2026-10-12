@@ -1,0 +1,20 @@
+{{- /* Per-page share image: base card + section label + page title, generated at build time.
+       Returns an image resource for regular pages, nothing otherwise. */ -}}
+{{- $img := "" -}}
+{{- if .IsPage -}}
+  {{- $base := resources.Get "og/base.png" -}}
+  {{- $canvas := resources.Get "og/canvas.png" -}}
+  {{- $bold := resources.Get "og/DMSans-Bold.ttf" -}}
+  {{- $med := resources.Get "og/DMSans-Medium.ttf" -}}
+  {{- $title := .Title | plainify | htmlUnescape -}}
+  {{- $size := cond (gt (len $title) 60) 54 64 -}}
+  {{- $kicker := upper (.CurrentSection.Title | default "Blog") -}}
+  {{- if eq .CurrentSection .Site.Home }}{{ $kicker = "CHRISTOSKALYVAS.EU" }}{{ end -}}
+  {{- if eq .Section "posts" }}{{ $kicker = "BLOG" }}{{ end -}}
+  {{- $titleImg := $canvas | images.Filter (images.Text $title (dict "font" $bold "size" $size "linespacing" 10 "color" "#ffffff" "x" 0 "y" 0)) -}}
+  {{- $img = $base | images.Filter
+        (images.Text $kicker (dict "font" $med "size" 26 "color" "#34d399" "x" 80 "y" 72))
+        (images.Overlay $titleImg 80 130) -}}
+  {{- $img = $img | resources.Copy (printf "og/%s.png" (.RelPermalink | strings.TrimPrefix "/" | strings.TrimSuffix "/" | replaceRE "[^a-zA-Z0-9]+" "-")) -}}
+{{- end -}}
+{{- return $img -}}
