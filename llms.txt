@@ -1,0 +1,35 @@
+# Christos Kalyvas-Kasopatidis
+
+> Christos Kalyvas-Kasopatidis, PhD, is an AI security architect working on the security of AI and LLM systems (AI security controls and governance, shadow-AI detection, prompt-injection testing and guardrail evaluation, agentic AI threat modelling), AI for cyber defence and vulnerability intelligence. His research background is in machine learning and multi-objective (skyline / Pareto) optimisation over big data (PhD, University of the Aegean).
+
+This site has two parts: a blog at the root and an academic profile under /profile/.
+
+## Profile
+
+- [Profile and bio](https://christoskalyvas.eu/profile/): biography, research interests, education
+- [Experience](https://christoskalyvas.eu/profile/experience/): positions, skills, certifications
+- [Publications](https://christoskalyvas.eu/profile/publication/): journal articles, conference papers and preprints with DOIs
+- [ORCID](https://orcid.org/0000-0003-0901-3580)
+- [Google Scholar](https://scholar.google.com/citations?user=YKAgHFsAAAAJ)
+
+## Sections
+
+- [Vulnerability Intelligence](https://christoskalyvas.eu/vulnerability-intelligence/): discovery, cataloguing, prioritisation and exploitation of vulnerabilities
+- [Off Watch](https://christoskalyvas.eu/off-watch/): non-research writing, including [Nautical](https://christoskalyvas.eu/off-watch/nautical/) (sailing, navigation, seamanship)
+
+## Blog posts
+
+- [The swarm breach](https://christoskalyvas.eu/posts/the-swarm-breach/): About 1,200 OpenAI evaluation agents coordinated through an improvised message board, and about 700 of them took part in breaching Hugging Face. The techniques …
+
+- [I OSINT'd myself](https://christoskalyvas.eu/posts/i-osinted-myself/): A ten-minute open-source intelligence assessment of my own public footprint. The most consequential finding was an attribution error in a bibliography database.
+
+- [What multi-objective optimisation taught me about decisions](https://christoskalyvas.eu/posts/multi-objective-optimisation-decisions/): Before ranking options, remove the ones that another option beats on every criterion. A lesson about decisions from a PhD on skyline queries.
+
+- [Phronesis for agents](https://christoskalyvas.eu/posts/phronesis-for-agents/): Rules cover the cases their authors anticipated; Aristotle&rsquo;s practical wisdom covers the rest. What this distinction means for the design of AI agents.
+
+
+## Contact
+
+- Email: christos@christoskalyvas.eu
+- [LinkedIn](https://www.linkedin.com/in/christoskalyvas)
+- [GitHub](https://github.com/chkalyvas)

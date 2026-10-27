@@ -1,0 +1,7 @@
+# Security contact for christoskalyvas.eu (RFC 9116)
+Contact: mailto:security@christoskalyvas.eu
+Expires: 2027-10-11T00:00:00.000Z
+Policy: https://christoskalyvas.eu/security/
+Acknowledgments: https://christoskalyvas.eu/security/#acknowledgments
+Preferred-Languages: en, el
+Canonical: https://christoskalyvas.eu/.well-known/security.txt
